@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int len = nums.size();
+     pair<int,int>arr[len];
+        for(int i=0;i<len;i++){
+            arr[i]={nums[i],i};
+        }
+       
+        sort(arr,arr+len);
+        for(int i=0;i<len;i++){
+            int x =  target-arr[i].first ;
+             int start =i+1;
+               int end = len-1;
+           while(start<=end){
+              
+               int mid= (start+ end)/2;
+               if(arr[mid].first==x){
+                   return {arr[i].second,arr[mid].second};
+               }
+               if(arr[mid].first<x){
+                   start = mid+1;
+               }
+               else
+               {
+                 end = mid-1;  
+               }
+           }
+        }
+        return {-1,-1};
+    }
+};
