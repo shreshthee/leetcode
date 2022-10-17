@@ -1,0 +1,45 @@
+class Solution {
+public:
+    
+    vector<vector<char>> var;
+    
+    void solve(string& s, string& digits, int cur, int& n, vector<string>& ans){
+        
+        if(cur == n){
+            ans.push_back(s);
+            return;
+        }
+        
+        for(int i=0; i<var[digits[cur]-'0'].size(); i++){
+            s.push_back(var[digits[cur] - '0'][i]);
+            solve(s, digits, cur+1, n, ans);
+            s.pop_back();
+        }
+    }
+    
+    vector<string> letterCombinations(string digits) {
+        
+        var.resize(10);
+        
+        var[2] = {'a', 'b', 'c'};
+        var[3] = {'d', 'e', 'f'};
+        var[4] = {'g', 'h', 'i'};
+        var[5] = {'j', 'k', 'l'};
+        var[6] = {'m', 'n', 'o'};
+        var[7] = {'p', 'q', 'r', 's'};
+        var[8] = {'t', 'u', 'v'};
+        var[9] = {'w', 'x', 'y', 'z'};
+        
+        int n = digits.size();
+        vector<string> ans;
+        
+        if(n == 0)
+            return ans;
+        
+        string s = "";
+        
+        solve(s, digits, 0, n, ans);
+        
+        return ans;
+    }
+};
