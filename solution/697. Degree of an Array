@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int findShortestSubArray(vector<int>& nums) {
+        map<int,vector<int>> mp;
+        for(int i = 0; i < nums.size(); i++)
+        {
+            mp[nums[i]].push_back(i);
+        }
+        int ans = INT_MAX, mx = 0;
+        for(auto it : mp)
+        {
+            int sz = it.second.size();
+            mx = max(mx, sz);
+        }
+        for(auto it : mp)
+        {
+            int sz = it.second.size();
+            if(sz == mx)
+            ans = min(ans, it.second[mx-1] - it.second[0] + 1);
+        }
+        return ans;
+    }
+};
