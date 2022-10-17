@@ -1,0 +1,16 @@
+class Solution {
+public:
+    string toLowerCase(string s) {
+        int len = s.size();
+         for(int i=0;i<len;i++){
+             if(s[i]>='A' && s[i]<= 'Z'){
+                 int c= s[i];
+                 c=c+32;
+                char y =c;
+                 s[i]= y;
+             }
+         }
+         
+        return s;
+    }
+};
