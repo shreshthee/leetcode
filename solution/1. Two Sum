@@ -7,7 +7,11 @@ public:
             arr[i]={nums[i],i};
         }
        
+       
+       
+       
         sort(arr,arr+len);
+        //sorting is done in given array;
         for(int i=0;i<len;i++){
             int x =  target-arr[i].first ;
              int start =i+1;
@@ -30,3 +34,6 @@ public:
         return {-1,-1};
     }
 };
+
+
+
