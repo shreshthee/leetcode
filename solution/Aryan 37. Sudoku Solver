@@ -1,0 +1,66 @@
+class Solution {
+public:
+    bool check(vector<vector<char>>& board, char& num, int r, int c){
+        
+        for(int i=0;i<9;i++){
+            if(board[i][c] == num)
+                return false;
+        }
+        
+        for(int i=0;i<9;i++){
+            if(board[r][i] == num)
+                return false;
+        }
+        
+        r = r-(r%3);
+        c = c-(c%3);
+        
+        for(int i=r;i<r+3;i++){
+            for(int j=c;j<c+3;j++){
+                
+                if(board[i][j] == num)
+                    return false;
+            }
+        }
+        
+        return true;
+    }
+    
+    bool sudokuSolver(vector<vector<char>>& board, int r, int c){
+        
+        if(c == 9){
+            r = r+1; c = 0;
+        }
+        
+        if(r == 9){
+            return true;
+        }
+        
+        if(board[r][c] == '.'){
+            for(char num='1';num <= '9';num++){
+                
+                bool canFill = check(board,num, r, c);
+                
+                if(canFill == true){
+                    board[r][c] = num;
+                    
+                    if(sudokuSolver(board,r,c+1) == true)
+                        return true;
+                    
+                    board[r][c] = '.';
+                }
+            }
+        } else {
+            return sudokuSolver(board, r, c+1);
+        }
+        
+        return false;
+    }
+    
+    void solveSudoku(vector<vector<char>>& board) {
+        
+        int r = 0, c = 0;
+        
+        sudokuSolver(board,r,c);
+    }
+};
