@@ -1,7 +1,3 @@
-print("Input a number, input exit to exit.")
-
-
-
 class solution:
   #We define a function to check if a string has a number.
 
