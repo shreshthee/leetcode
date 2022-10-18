@@ -1,0 +1,11 @@
+class Solution(object):
+    def frequencySort(self, s):
+        cnt = Counter(s)
+        arr = [[freq, c] for c, freq in cnt.items()]
+        arr.sort(key=lambda x:x[0],reverse=True)  # sort in decreasing order by frequency
+        ans = []
+        for freq, c in arr:
+            ans.append(freq * c)
+        return "".join(ans)
+    
+        
