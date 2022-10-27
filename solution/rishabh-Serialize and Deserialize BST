@@ -1,0 +1,71 @@
+class Codec {
+public:
+
+    // Encodes a tree to a single string.
+    string ans;
+    
+    void solve(TreeNode*r)
+    {
+        if(!r) return;
+        //cout<<"op";
+         ans+=to_string(r->val);
+        ans+=",";
+        
+         solve(r->left);
+    
+        
+       
+        solve(r->right);
+        
+    }
+    
+    string serialize(TreeNode* root) {
+    if(!root) return ans;
+        solve(root);    
+        
+        ans.pop_back();//cout<<ans;
+        return ans;
+    }
+
+    // Decodes your encoded data to tree.
+    
+    TreeNode* tree(vector<int>&p,int l,int r,int&idx)
+    {  if(idx==p.size()) return NULL;
+     
+       if(p[idx]<l || p[idx] >r) return NULL;
+     
+       
+        
+        TreeNode*m=new TreeNode(p[idx++]);
+       
+        m->left=tree(p,l,m->val,idx);
+        m->right=tree(p,m->val,r,idx);
+        
+        return m;
+    }
+    
+    TreeNode* deserialize(string data) {
+        
+       vector<int>pre;
+        
+        int i=0;
+        
+        while(i<data.size())
+        {
+            string p;
+            
+            while(i<data.size()&& data[i]!=',')
+            {
+                p+=data[i];i++;
+            }
+            
+            i++;
+            pre.push_back(stoi(p));
+            
+        }
+        
+       cout<<pre.size();
+        int x=0;
+        return tree(pre,INT_MIN,INT_MAX,x);
+        
+    }
