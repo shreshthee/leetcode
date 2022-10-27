@@ -1,0 +1,47 @@
+string removeDuplicateLetters(string s) {
+        
+        
+        int i,n=s.size();
+       unordered_map<char,int>mp;
+        
+        for(i=0;i<n;i++)
+        {
+            mp[s[i]]=i;
+        }
+        
+        stack<char>a;
+        
+        a.push(s[0]);
+        i=1;
+        vector<bool>vis(26,0);
+        vis[s[0]-'a']=1;
+        while(i<n)
+        {   
+            if(vis[s[i]-'a']){i++;continue;} 
+            
+            while(i<n && a.size() && a.top()>s[i] && mp[a.top()]>i)
+            {
+               
+                  vis[a.top()-'a']=0;  a.pop();
+            
+                
+            }
+           
+              vis[s[i]-'a']=1;
+            
+                a.push(s[i]);i++;
+            
+            
+        }
+        
+        string ans;
+        
+        while(a.size())
+        {ans+=a.top();a.pop();
+            
+        }
+        
+        reverse(ans.begin(),ans.end());
+        
+        return ans;
+    }
