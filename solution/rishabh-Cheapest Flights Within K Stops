@@ -1,0 +1,18 @@
+int dfs(int src, int dst,vector<vector<int>>& f,int k)
+    {
+        if(src==dst) return 0;
+        
+        if(k==0) return INT_MAX;
+        
+        int ans=INT_MAX;
+        
+        for(auto w:f[src])
+        {
+            ans=min(ans,)
+        }
+    }
+    int findCheapestPrice(int n, vector<vector<int>>& f, int src, int dst, int k) {
+        
+        
+       return dfs(src,dst,f,k);
+    }
